@@ -3,7 +3,7 @@ import render
 import os
 from random import randint
 
-bot = telebot.TeleBot("361097865:AAH2jPAIvtegYLQoCH1Zz0pHW6xZw80hXtM")
+bot = telebot.TeleBot("TOKEN")
 
 USER_POS = {}
 BACKGROUND = {}
