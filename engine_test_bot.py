@@ -14,7 +14,7 @@ def help(message):
 @bot.message_handler(commands=['spawn'])
 def spawn(message):
     map_spawn_pos = [randint(200, 2800), randint(200, 1500)]
-    usr = engine.character('hero.jpg', map_pos=map_spawn_pos)
+    usr = engine.character('hero.png', map_pos=map_spawn_pos)
     move = engine.mover(usr)
     ACTIVE_USERS[message.chat.id] = move
     fname = engine.save_background(move.spawn(), "{}.jpg".format(message.chat.id))
