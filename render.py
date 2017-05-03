@@ -1,8 +1,8 @@
 from PIL import Image
 import os, random
 
-WORLD_MAP = "terrain2.jpg"
-SPRITES_DIR = "sprites/"
+WORLD_MAP = "test_resources/terrain.jpg"
+SPRITES_DIR = "test_resources/sprites/"
 
 
 def get_background(char_pos, size=300):
