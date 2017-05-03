@@ -1,21 +1,24 @@
 from PIL import Image
 import os, random
 
-WORLD_MAP = "test_resources/terrain.jpg"
-SPRITES_DIR = "test_resources/sprites/"
+WORLD_MAP = "terrain2.jpg"
+SPRITES_DIR = "sprites/"
 
-def get_background(char_pos, size=14):
+
+def get_background(char_pos, size=300):
     """return pure background image around the character in char_pos position."""
     full_back = Image.open(WORLD_MAP).convert("RGBA")
     cropbox = (char_pos[0] - size//2, char_pos[1] - size//2, char_pos[0] + size//2, char_pos[1] + size//2)
     full_back = full_back.crop(cropbox)
     return full_back
 
+
 def random_pos(image):
     """image must be at least 11x11 px"""
     return (random.randint(0, image.size[0] - 50), random.randint(0, image.size[1] - 50))
 
-def fill_with_shit(background, quantity=10):
+
+def fill_with_shit(background, quantity=random.randint(2,11)):
     """add terrain elements to the background"""
     elements = [SPRITES_DIR + filename for filename in os.listdir(SPRITES_DIR) if filename.endswith('.png')]
     for _ in range(quantity):
@@ -26,20 +29,13 @@ def fill_with_shit(background, quantity=10):
         tmpimg.close(); blank.close()
     return background
 
+
 def add_dynamic_sprites(terrain_img, spr):
     """sprite list must be a tuple of filename and (x, y) position"""
     tmpimg = Image.open(spr[0]).convert('RGBA')
     terrain_img.paste(tmpimg, spr[1])
     tmpimg.close()
     return terrain_img
-
-def middle(image):
-    return [image.size[0]//2, image.size[1]//2]
-
-def tempfile(image, message):
-    image.save('{}.jpg'.format(message.chat.id), 'JPEG', optimize=True, quality=80)
-    return '{}.jpg'.format(message.chat.id)
-
 
 if __name__ == '__main__':
     import sys
