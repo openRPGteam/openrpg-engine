@@ -32,9 +32,11 @@ def fill_with_shit(background, quantity=random.randint(2,11)):
 
 def add_dynamic_sprites(terrain_img, spr):
     """sprite list must be a tuple of filename and (x, y) position"""
+    transparent = Image.new("RGBA", terrain_img.size, (0,0,0,0))
     tmpimg = Image.open(spr[0]).convert('RGBA')
-    terrain_img.paste(tmpimg, spr[1])
-    tmpimg.close()
+    transparent.paste(tmpimg, spr[1])
+    terrain_img = Image.alpha_composite(terrain_img, transparent)
+    tmpimg.close(); transparent.close()
     return terrain_img
 
 if __name__ == '__main__':
@@ -50,10 +52,8 @@ if __name__ == '__main__':
         if '-d' in sys.argv:
             spr_list_begin = sys.argv.index('-d') + 1
             subargv = sys.argv[spr_list_begin:]
-            spr_list = []
             for dyn_sprite in subargv:
                 el = dyn_sprite.split(',')
-                spr_list.append((el[0], (int(el[1]), int(el[2]))))
-            bck = add_dynamic_sprites(bck, spr_list)
+                bck.add_dynamic_sprites((el[0], (int(el[1]), int(el[2]))))
         bck.save(sys.argv[3], "JPEG", optimize=True, quality=80)
         bck.close()
