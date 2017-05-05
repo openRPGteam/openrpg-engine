@@ -8,6 +8,7 @@ class character:
         backg = render.get_background(map_pos, 400)
         backg = render.fill_with_shit(backg)
         self.background = backg
+    # needed for pseudo-unique filename in engine-test-bot.py
     def getpos(self):
         return self.user_pos[0] + self.user_pos[1]
 class mover:
@@ -16,6 +17,7 @@ class mover:
         self.user = user
 
     def spawn(self):
+        # add user sprite to the background
         background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
         return background
 
@@ -23,7 +25,7 @@ class mover:
         if self.user.user_pos[0] >= 20:
             self.user.user_pos[0] -= 20
             background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
-        else:
+        else:   # if space left on map isn`t enough, move the map
             self.user.map_pos[0] -= 400
             background = render.get_background(self.user.map_pos, 400)
             self.user.user_pos[0] = 370
@@ -71,7 +73,7 @@ class mover:
             background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
         return background
 
-
+# save file with compression
 def save_background(image, filename, quality=80):
     image.save(filename, "JPEG", optimize=True, quality=quality)
     image.close()
