@@ -45,8 +45,10 @@ if __name__ == '__main__':
         print('''Usage: render.py [position x] [position y] [output filename] -s [size] -q [quantity] -d [sprite_list (filename,x,y NO indents)]
         Arguments with switches are optional''')
     else:
-        size = int(sys.argv[sys.argv.index('-s') + 1]) if '-s' in sys.argv else 14
-        quantity = int(sys.argv[sys.argv.index('-q') + 1]) if '-q' in sys.argv else 10
+        # extract size form argv
+        size = int(sys.argv[sys.argv.index('-s') + 1]) if '-s' in sys.argv else 300
+        # extract quantity from argv
+        quantity = int(sys.argv[sys.argv.index('-q') + 1]) if '-q' in sys.argv else random.randint(2,11)
         bck = get_background((int(sys.argv[1]), int(sys.argv[2])), size)
         bck = fill_with_shit(bck, quantity)
         if '-d' in sys.argv:
