@@ -2,12 +2,14 @@ import render
 
 class character:
     def __init__(self, sprite_file, map_pos=[1500, 850], user_pos=[150,150]):
-        character.sprite = sprite_file
-        character.map_pos = map_pos
-        character.user_pos = user_pos
+        self.sprite = sprite_file
+        self.map_pos = map_pos
+        self.user_pos = user_pos
         backg = render.get_background(map_pos, 400)
         backg = render.fill_with_shit(backg)
-        character.background = backg
+        self.background = backg
+    def getpos(self):
+        return self.user_pos[0] + self.user_pos[1]
 class mover:
     user = 0
     def __init__(self, user):
