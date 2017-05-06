@@ -13,10 +13,10 @@ PHOTO_URL = "http://url.com/"
 # controls
 def draw_buttons():
     keyboard = telebot.types.InlineKeyboardMarkup()
-    left = telebot.types.InlineKeyboardButton("<-", callback_data='/left')
-    up = telebot.types.InlineKeyboardButton("/\\", callback_data='/up')
-    down = telebot.types.InlineKeyboardButton("\\/", callback_data='/down')
-    right = telebot.types.InlineKeyboardButton("->", callback_data='/right')
+    left = telebot.types.InlineKeyboardButton(u'\U00002B05', callback_data='/left')
+    up = telebot.types.InlineKeyboardButton(u'\U00002B06', callback_data='/up')
+    down = telebot.types.InlineKeyboardButton(u'\U00002B07', callback_data='/down')
+    right = telebot.types.InlineKeyboardButton(u'\U000027A1', callback_data='/right')
     keyboard.row(left, up, down, right)
     return keyboard
 
