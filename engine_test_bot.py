@@ -13,10 +13,10 @@ PHOTO_URL = "http://url.com/"
 # controls
 def draw_buttons():
     keyboard = telebot.types.InlineKeyboardMarkup()
-    left = telebot.types.InlineKeyboardButton("<-", callback_data='/left')
-    up = telebot.types.InlineKeyboardButton("/\\", callback_data='/up')
-    down = telebot.types.InlineKeyboardButton("\\/", callback_data='/down')
-    right = telebot.types.InlineKeyboardButton("->", callback_data='/right')
+    left = telebot.types.InlineKeyboardButton(u'\U00002B05', callback_data='/left')
+    up = telebot.types.InlineKeyboardButton(u'\U00002B06', callback_data='/up')
+    down = telebot.types.InlineKeyboardButton(u'\U00002B07', callback_data='/down')
+    right = telebot.types.InlineKeyboardButton(u'\U000027A1', callback_data='/right')
     keyboard.row(left, up, down, right)
     return keyboard
 
@@ -30,7 +30,7 @@ def spawn(message):
     # spawns in a random position
     map_spawn_pos = [randint(200, 2800), randint(200, 1500)]
     # creates class for moving. see engine.py
-    usr = engine.character('hero.jpg', map_pos=map_spawn_pos)
+    usr = engine.character('hero.png', map_pos=map_spawn_pos)
     move = engine.mover(usr)
     # processes and saves image in serv/ path
     fname = engine.save_background(move.spawn(), "serv/{0}{1}.jpg".format(message.chat.id, usr.getpos()))
