@@ -30,7 +30,7 @@ def spawn(message):
     # spawns in a random position
     map_spawn_pos = [randint(200, 2800), randint(200, 1500)]
     # creates class for moving. see engine.py
-    usr = engine.character('hero.png', map_pos=map_spawn_pos)
+    usr = engine.character('hero.jpg', map_pos=map_spawn_pos)
     move = engine.mover(usr)
     # processes and saves image in serv/ path
     fname = engine.save_background(move.spawn(), "serv/{0}{1}.jpg".format(message.chat.id, usr.getpos()))
