@@ -1,2 +1,3 @@
-# openrpg-engine
-Run: ``pip3 install -r requirements.txt && python3 engine_test_bot.py``
+# openrpg-engine-server
+Compile: ``cmake . && make -j4``
+C++14-compatible compiler required. Depends on boost_system.
