@@ -1,8 +1,8 @@
 from PIL import Image
 import os, random
 
-WORLD_MAP = "test_resources/terrain.jpg"
-SPRITES_DIR = "test_resources/sprites/"
+WORLD_MAP = "terrain2.jpg"
+SPRITES_DIR = "sprites/"
 
 
 def get_background(char_pos, size=300):
@@ -45,10 +45,8 @@ if __name__ == '__main__':
         print('''Usage: render.py [position x] [position y] [output filename] -s [size] -q [quantity] -d [sprite_list (filename,x,y NO indents)]
         Arguments with switches are optional''')
     else:
-        # extract size form argv
-        size = int(sys.argv[sys.argv.index('-s') + 1]) if '-s' in sys.argv else 300
-        # extract quantity from argv
-        quantity = int(sys.argv[sys.argv.index('-q') + 1]) if '-q' in sys.argv else random.randint(2,11)
+        size = int(sys.argv[sys.argv.index('-s') + 1]) if '-s' in sys.argv else 14
+        quantity = int(sys.argv[sys.argv.index('-q') + 1]) if '-q' in sys.argv else 10
         bck = get_background((int(sys.argv[1]), int(sys.argv[2])), size)
         bck = fill_with_shit(bck, quantity)
         if '-d' in sys.argv:
