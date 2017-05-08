@@ -8,13 +8,13 @@ if __name__ == '__main__' :
         for file in os.listdir('.') :
             if file.startswith(sys.argv[-1][:-3]):
                 os.remove(file)
-        mv = engine.mover(engine.character('hero.png', [parsed[0], parsed[1]]))
+        mv = engine.mover(engine.character('test_resources/hero.png', [parsed[0], parsed[1]]))
         engine.save_background(mv.spawn(), sys.argv[-1] + '.jpg')
     else:
         for file in os.listdir('.') :
             if file.startswith(sys.argv[-1][:-3]):
                 os.remove(file)
-        mv = engine.mover(engine.character('hero.png', [parsed[0], parsed[1]], [parsed[2], parsed[3]]))
+        mv = engine.mover(engine.character('test_resources/hero.png', [parsed[0], parsed[1]], [parsed[2], parsed[3]]))
         back = mv.spawn()
         if parsed[4] == 1:
             back = mv.right()
