@@ -6,10 +6,7 @@ class character:
         self.user_pos = user_pos
         backg = render.get_background(map_pos, 400)
         self.map_pos = render.random_pos(backg)
-        # backg = render.fill_with_shit(backg)
         self.background = backg
-    def getpos(self):
-        return self.user_pos[0] + self.user_pos[1]
 class mover:
     user = 0
     def __init__(self, user):
@@ -27,7 +24,6 @@ class mover:
             self.user.map_pos[0] -= 400
             background = render.get_background(self.user.map_pos, 400)
             self.user.user_pos[0] = 370
-            # background = render.fill_with_shit(background)
             self.user.background = background.copy()
             background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
         return background
@@ -40,7 +36,6 @@ class mover:
             self.user.map_pos[0] += 400
             background = render.get_background(self.user.map_pos, 400)
             self.user.user_pos[0] = 0
-            # background = render.fill_with_shit(background)
             self.user.background = background.copy()
             background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
         return background
@@ -53,7 +48,6 @@ class mover:
             self.user.map_pos[1] -= 400
             background = render.get_background(self.user.map_pos, 400)
             self.user.user_pos[1] = 340
-            # background = render.fill_with_shit(background)
             self.user.background = background.copy()
             background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
         return background
@@ -66,7 +60,6 @@ class mover:
             self.user.map_pos[1] += 400
             background = render.get_background(self.user.map_pos, 400)
             self.user.user_pos[1] = 0
-            # background = render.fill_with_shit(background)
             self.user.background = background.copy()
             background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
         return background
