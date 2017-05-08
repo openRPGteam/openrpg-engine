@@ -1,7 +1,7 @@
 from PIL import Image
 import os, random
 
-WORLD_MAP = "test_resources/terrain2.jpg"
+WORLD_MAP = "test_resources/terrain.jpg"
 SPRITES_DIR = "test_resources/sprites/"
 
 
