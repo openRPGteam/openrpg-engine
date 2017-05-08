@@ -12,6 +12,7 @@
 
 typedef SimpleWeb::Server<SimpleWeb::HTTP> Server;
 
+const static std::string _serv_ip("http://52.88.12.119:8081/");
 
 namespace functional
 {
