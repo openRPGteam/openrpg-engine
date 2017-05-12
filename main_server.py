@@ -8,7 +8,7 @@ SAVE_DIR = 'serv/'
 URL = "http://127.0.0.1:8081/"
 
 def spawn(usrid):
-    mv = engine.mover(engine.character('hero.png'))
+    mv = engine.mover(engine.character('test_resources/hero.png'))
     ACTIVE_USERS[usrid] = mv
     fname = usrid + mv.user.getpos() + '.jpg'
     engine.save_background(mv.spawn(),
