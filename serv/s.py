@@ -1,11 +1,14 @@
-# run this before running main server
 import http.server
 import socketserver
 
 PORT = 8081
 
-Handler = http.server.SimpleHTTPRequestHandler
+def start():
+    Handler = http.server.SimpleHTTPRequestHandler
+    httpd = socketserver.TCPServer(("", PORT), Handler)
+    print("serving at port", PORT)
+    httpd.serve_forever()
+    return None
 
-httpd = socketserver.TCPServer(("", PORT), Handler)
-print("serving at port", PORT)
-httpd.serve_forever()
+if __name__ == '__main__':
+    start()
