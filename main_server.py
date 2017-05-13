@@ -11,7 +11,7 @@ URL = "http://127.0.0.1:8081/"
 
 def spawn(usrid):
     # create character mover with random skin and random map position
-    mv = engine.mover(engine.character('hero{}.png'.format(randint(2, 4)),[42 * randint(10, 60), 42 * randint(10, 35)]))
+    mv = engine.mover(engine.character('test_resources/hero{}.png'.format(randint(2, 4)),[42 * randint(10, 60), 42 * randint(10, 35)]))
     # add this mover to active users
     ACTIVE_USERS[usrid] = mv
     img = mv.spawn()
