@@ -1,76 +1,55 @@
 import render
 from random import randint
 
+def in_vision_field(pos1, pos2):
+    """find out if the distance between two characters is small enough"""
+    return abs(pos1[0] - pos2[0]) < 218 and abs(pos2[1] - pos1[1]) < 218
+
+def pos_in_vfield(mover1, mover2):
+    """convert position on general map to image position"""
+    p1, p2 = mover1.user.get_pos(), mover2.user.get_pos()
+    return (177 - (p1[0] - p2[0]), 177 - (p1[1] - p2[1]))
+
+
 class character:
-    def __init__(self, sprite_file, map_pos=[randint(40, 2400), randint(20, 1300)], user_pos=[150,150]):
+    # TODO: remove default map_pos argument, no randomness in such way
+    def __init__(self, sprite_file, map_pos=[42 * randint(10, 60), 42 * randint(10, 35)]):
         self.sprite = sprite_file
-        self.user_pos = user_pos
-        backg = render.get_background(map_pos, 400)
-        self.map_pos = render.random_pos(backg)
-        # backg = render.fill_with_shit(backg)
-        self.background = backg
-    def getpos(self):
-        return str(self.user_pos[0]) + str(self.user_pos[1])
+        self.map_pos = map_pos
+
+    def getstrpos(self):
+        """position for filename"""
+        return str(self.map_pos[0]) + str(self.map_pos[1])
+
+    def get_pos(self):
+        """position on map getter"""
+        return self.map_pos
+
+
 class mover:
     user = 0
+
     def __init__(self, user):
         self.user = user
 
     def spawn(self):
-        background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
-        return background
+        return render.draw_map(self.user.map_pos, self.user.sprite)
 
     def left(self):
-        if self.user.user_pos[0] >= 20:
-            self.user.user_pos[0] -= 20
-            background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
-        else:
-            self.user.map_pos[0] -= 400
-            background = render.get_background(self.user.map_pos, 400)
-            self.user.user_pos[0] = 370
-            # background = render.fill_with_shit(background)
-            self.user.background = background.copy()
-            background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
-        return background
+        self.user.map_pos[0] -= 42
+        return self.spawn()
 
     def right(self):
-        if self.user.user_pos[0] <= 350:
-            self.user.user_pos[0] += 20
-            background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
-        else:
-            self.user.map_pos[0] += 400
-            background = render.get_background(self.user.map_pos, 400)
-            self.user.user_pos[0] = 0
-            # background = render.fill_with_shit(background)
-            self.user.background = background.copy()
-            background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
-        return background
+        self.user.map_pos[0] += 42
+        return self.spawn()
 
     def up(self):
-        if self.user.user_pos[1] >= 20:
-            self.user.user_pos[1] -= 20
-            background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
-        else:
-            self.user.map_pos[1] -= 400
-            background = render.get_background(self.user.map_pos, 400)
-            self.user.user_pos[1] = 340
-            # background = render.fill_with_shit(background)
-            self.user.background = background.copy()
-            background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
-        return background
+        self.user.map_pos[1] -= 42
+        return self.spawn()
 
     def down(self):
-        if self.user.user_pos[1] <= 320:
-            self.user.user_pos[1] += 20
-            background = render.add_dynamic_sprites(self.user.background.copy(), (self.user.sprite, tuple(self.user.user_pos)))
-        else:
-            self.user.map_pos[1] += 400
-            background = render.get_background(self.user.map_pos, 400)
-            self.user.user_pos[1] = 0
-            # background = render.fill_with_shit(background)
-            self.user.background = background.copy()
-            background = render.add_dynamic_sprites(background, (self.user.sprite, tuple(self.user.user_pos)))
-        return background
+        self.user.map_pos[1] += 42
+        return self.spawn()
 
 
 def save_background(image, filename, quality=80):
