@@ -1,7 +1,8 @@
 from PIL import Image, ImageDraw
 
-WORLD_MAP = "terrain2.jpg"
-SPRITES_DIR = "sprites/"
+WORLD_MAP = "test_resources/terrain.jpg"
+# TODO: remove this, obsolete
+SPRITES_DIR = "test_resources/sprites/"
 
 
 def get_raw_background(char_pos, size=394):
