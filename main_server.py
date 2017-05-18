@@ -14,7 +14,6 @@ class Handler(http.server.BaseHTTPRequestHandler):
         if len(LAST_NAME) > 0:
             os.remove(LAST_NAME)
         req_data = self.rfile.read(int(self.headers['Content-Length']))
-        print(req_data)
         json_req = parse_json.check_request(req_data)
         if json_req[0] == False:
             self.send_response(400)

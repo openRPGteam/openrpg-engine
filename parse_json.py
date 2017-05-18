@@ -21,4 +21,4 @@ def extract_request(req, path=""):
             res = drawer.draw_transparent(pos, arr[pos]["player"])
         if res == False:
             return "error"
-    return drawer.save_image(path + '{}.jpg'.format(randint(10000000, 99999999)))
+    return drawer.save_image(path + '{}.jpg'.format(randint(10000000, 99999999))).split('/')[-1]
