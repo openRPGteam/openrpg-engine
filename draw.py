@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageDraw
 
 
 GROUND_TYPES = {
@@ -12,6 +12,12 @@ HERO_TYPES = {
     "DISABLED" : "sprites/hero2.png",
     "HIPSTER" : "sprites/hero3.png",
     "ISLAMIC_WARRIOR" : "sprites/hero4.png"
+}
+
+MARKUPS = {
+    3 : "sprites/3markup.png",
+    4 : "sprites/4markup.png",
+    9 : "sprites/9markup.png"
 }
 
 class draw:
@@ -50,6 +56,26 @@ class draw:
         hero.close()
         transparent.close()
         return True
+
+    def add_markup(self, mode):
+        if mode not in MARKUPS.keys():
+            markup = Image.new('RGBA', self.back.size, (0, 0, 0, 0))
+            drawer = ImageDraw.Draw(markup)
+            for c in range(1, mode):
+                x0 = ((self.back.size[0] - 2 * (mode - 1)) // mode + 2) * c
+                y0 = ((self.back.size[1] - 2 * (mode - 1)) // mode + 2) * c
+                drawer.line([(x0, 0), (x0, self.back.size[1])], (0, 0, 0, 255), 2)
+                drawer.line([(0, y0), (self.back.size[0], y0)], (0, 0, 0, 255), 2)
+            fname = 'sprites/{}markup.png'.format(mode)
+            markup.save(fname, "PNG")
+            MARKUPS[mode] = fname
+            self.back = Image.alpha_composite(self.back, markup)
+            markup.close()
+        else:
+            markup = Image.open(MARKUPS[mode])
+            self.back = Image.alpha_composite(self.back, markup)
+            markup.close()
+
 
     def save_image(self, name):
         self.back.save(name, 'JPEG', optimize=True)
