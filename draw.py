@@ -14,6 +14,21 @@ HERO_TYPES = {
     "ISLAMIC_WARRIOR" : "sprites/hero4.png"
 }
 
+BATTLE_TYPES = [
+    # this
+    {
+        "DISABLED" : "sprites/hero_back2.png",
+        "HIPSTER" : "sprites/hero_back3.png",
+        "ISLAMIC_WARRIOR" : "sprites/hero_back4.png"
+    },
+    # that
+    {
+        "DISABLED" : "sprites/enemy_back2.png",
+        "HIPSTER" : "sprites/enemy_back3.png",
+        "ISLAMIC_WARRIOR" : "sprites/enemy_back4.png"
+    }
+]
+
 MARKUPS = {
     3 : "sprites/3markup.png",
     4 : "sprites/4markup.png",
